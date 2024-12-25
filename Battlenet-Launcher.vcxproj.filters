@@ -6,4 +6,16 @@
   <ItemGroup>
     <ResourceCompile Include="Source\resources.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Source\ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\resource.h" />
+  </ItemGroup>
 </Project>
