@@ -26,10 +26,6 @@
 
 namespace win
 {
-	namespace registry
-	{
-		
-	}
 	namespace process
 	{
 		auto create(const std::wstring_view& process_name, const std::wstring_view& command_line = L"", unsigned long create_flags = 0)-> PROCESS_INFORMATION
@@ -319,58 +315,6 @@ namespace ui::dialogs
 		return radio_buttons.second[chosen_game];
 
 	}
-}
-
-HRESULT WINAPI TaskDialogCallbackProc(_In_ HWND hwnd, _In_ UINT msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ LONG_PTR lpRefData)
-{
-	switch (msg)
-	{
-	case TDN_HYPERLINK_CLICKED:
-		const auto hyperlink = std::wstring(std::bit_cast<const wchar_t*>(lParam));
-
-		if (hyperlink == L"help")
-		{
-			MessageBox(nullptr,
-				L"Specify which game to launch: \n\n"
-				"Blizzard Arcade Collection = rtro\n"
-				"Call of Duty HQ = codhq\n"
-				"Call of Duty: Black Ops 4 = codbo4\n"
-				"Call of Duty: Black Ops Cold War = codbocw\n"
-				"Call of Duty: Modern Warfare = codmw2019\n"
-				"Call of Duty: Modern Warfare 2 Campaign Remastered = codmw2cr\n"
-				"Call of Duty: MWII | WZ2.0 = codmw2\n"
-				"Call of Duty: Vanguard = codvg\n"
-				"Crash Bandicoot 4: It's About Time = cb4\n"
-				"Diablo 2: Resurrected = d2r\n"
-				"Diablo 3 = d3\n"
-				"Diablo 3 Public Test Realm = d3ptr\n"
-				"Diablo 4 = d4\n"
-				"Diablo Immortal = di\n"
-				"Hearthstone = hs\n"
-				"Heroes of the Storm = hots\n"
-				"Heroes of the Storm Public Test Realm = hotsptr\n"
-				"Overwatch = ow\n"
-				"Overwatch Public Test Realm = owptr\n"
-				"Starcraft 2 = sc2 \n"
-				"Starcraft Remastered = scr \n"
-				"Warcraft 1: Orcs & Humans = w1 \n"
-				"Warcraft 1: Remastered = w1r \n"
-				"Warcraft 2: Battle.net Edition = w2 \n"
-				"Warcraft 2: Remastered = w2r \n"
-				"Warcraft 3: Reforged = w3 \n"
-				"World of Warcraft = wow \n"
-				"World of Warcraft Classic = wowclassic \n"
-				"World of Warcraft Public Test Realm = wowptr",
-				L"Error", MB_OK | MB_ICONERROR);
-		}
-		else
-		{
-			ShellExecute(nullptr, L"open", hyperlink.c_str(), nullptr, nullptr, SW_SHOW);
-
-		}
-	}
-
-	return S_OK;
 }
 
 int wmain(int argc, wchar_t **argv)
