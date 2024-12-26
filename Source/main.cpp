@@ -171,12 +171,7 @@ namespace bnet::launcher
 
 	auto run_game(const std::wstring_view& game) -> unsigned long
 	{
-		if (!launch_options.contains(std::wstring(game)))
-		{
-			MessageBox(nullptr, L"Please specify a valid parameter: \n\nBlizzard Arcade Collection = rtro\nCall of Duty HQ = codhq\nCall of Duty: Black Ops 4 = codbo4\nCall of Duty: Black Ops Cold War = codbocw\nCall of Duty: Modern Warfare = codmw2019\nCall of Duty: Modern Warfare 2 Campaign Remastered = codmw2cr\nCall of Duty: MWII | WZ2.0 = codmw2\nCall of Duty: Vanguard = codvg\nCrash Bandicoot 4: It's About Time = cb4\nDiablo 2: Resurrected = d2r\nDiablo 3 = d3\nDiablo 3 Public Test Realm = d3ptr\nDiablo 4 = d4\nDiablo Immortal = di\nHearthstone = hs\nHeroes of the Storm = hots\nHeroes of the Storm Public Test Realm = hotsptr\nOverwatch = ow\nOverwatch Public Test Realm = owptr\nStarcraft 2 = sc2\nStarcraft Remastered = scr\nWarcraft 1: Orcs & Humans = w1\nWarcraft 1: Remastered = w1r\nWarcraft 2: Battle.net Edition = w2\nWarcraft 2: Remastered = w2r\nWarcraft 3: Reforged = w3\nWorld of Warcraft = wow\nWorld of Warcraft Classic = wowclassic\nWorld of Warcraft Public Test Realm = wowptr", L"Error", MB_OK);
-			return 0;
-		}
-		return win::process::create(find_executable(), LR"(--exec="launch WoWC")").dwProcessId;
+		return win::process::create(find_executable(), launch_options.at(std::wstring(game)).game_executable).dwProcessId;
 	}
 
 	auto wait(const unsigned long process_id) -> void
